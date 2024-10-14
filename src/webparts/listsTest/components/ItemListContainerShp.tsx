@@ -64,7 +64,7 @@ class ItemListContainerShp extends React.Component<IItemListContainerProps, IIte
   //       this.setState({ items: data.value });
   //     });
   // }
-  listName = 'TestLists';
+  listName = 'CRUDLIST';
   
   fetchShpItems = () => {
     this.props.SPService.getItems(this.listName).then((response) => {

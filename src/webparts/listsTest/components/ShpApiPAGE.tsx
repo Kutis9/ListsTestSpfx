@@ -184,6 +184,13 @@ export default class ShpApiPAGE extends React.Component<IShpApiPAGEProps, IShpAp
     render() {
         return (
             <div className={styles.shpApiPage}>
+                    {/* Vypis Zoznamu */}
+                <ul>
+                    {this.state.items.map((item: any, index: number) => (
+                    <li key={index}>{item.ID} - {item.Title} - {item.Meno} {item.Priezvisko}</li>
+                    ))}
+                </ul>
+
                 {/* GET OPERACIA */}
                 <h2>GET</h2>
                 {/*<input type="text" value={this.state.listName} onChange={this.handleInputChange} placeholder='Zadajte názov zoznamu' />*/}
@@ -209,12 +216,7 @@ export default class ShpApiPAGE extends React.Component<IShpApiPAGEProps, IShpAp
                 <button onClick={this.handleUpdateClick}>Aktualizovať</button>
 
 
-                {/* Vypis Zoznamu */}
-                <ul>
-                    {this.state.items.map((item: any, index: number) => (
-                        <li key={index}>{item.ID} - {item.Title} - {item.Meno} {item.Priezvisko}</li>
-                    ))}
-                </ul>
+
             </div>
         );
     }

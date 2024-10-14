@@ -5,6 +5,8 @@ import ItemListContainer from './ItemListContainer';
 import { loadStyles } from "@microsoft/load-themed-styles";
 import Button from './Button';
 import ItemListContainerShp from './ItemListContainerShp';
+import Menu from './Menu';
+import ShpApiPAGE from './ShpApiPAGE';
 
 const customStyles = `
   #workbenchPageContent {
@@ -24,6 +26,8 @@ loadStyles(customStyles);
 
 export interface IListsTestState {
   large: boolean;   // // Pridáme stav pre zmenu veľkosti tlačidla
+  showListsTest: boolean;
+  showShpApiPage: boolean;
 }
 
 export default class ListsTest extends React.Component<IListsTestProps, IListsTestState> {
@@ -31,8 +35,18 @@ export default class ListsTest extends React.Component<IListsTestProps, IListsTe
     super(props);
 
     this.state = {
-      large: false
+      large: false,
+      showListsTest: true,
+      showShpApiPage: false
     };
+  }
+
+  handleMenuItemClick = (menuItem: string) => {
+    if (menuItem === 'Domov') {
+      this.setState({ showListsTest: true, showShpApiPage: false });
+    } else if (menuItem === 'API') {
+      this.setState({ showListsTest: false, showShpApiPage: true });
+    }
   }
 
 
@@ -42,9 +56,9 @@ export default class ListsTest extends React.Component<IListsTestProps, IListsTe
     
     return (
       <div className={styles.listsTest}>
+          <Menu onMenuItemClick={this.handleMenuItemClick}/>
+          {this.state.showListsTest && (
         <div className={styles.container}>
-          {/* <div className={styles.row}>
-            <div className={styles.column}> */}
              
               {/* <ItemListContainer context={this.props.context} /> */}
               <ItemListContainer context={this.props.context} />
@@ -52,14 +66,18 @@ export default class ListsTest extends React.Component<IListsTestProps, IListsTe
               <ItemListContainerShp context={this.props.context} SPService={this.props.SPService}/>
 
 
-              <Button className={buttonClassName} onClick={this.handleSizeToggle} text='Klik' />
-
-              
+              <Button className={buttonClassName} onClick={this.handleSizeToggle} text='Klik' />       
             </div>
+          )}
+
+
+          {this.state.showShpApiPage && (
+            <ShpApiPAGE context={this.props.context}/>
+          )}
+
           </div>
-      //   </div>
-      // </div>
     );
+    
   }
 
   handleSizeToggle = () => {

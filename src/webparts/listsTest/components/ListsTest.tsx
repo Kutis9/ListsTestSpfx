@@ -4,6 +4,7 @@ import { IListsTestProps } from './IListsTestProps';
 import ItemListContainer from './ItemListContainer';
 import { loadStyles } from "@microsoft/load-themed-styles";
 import Button from './Button';
+import ItemListContainerShp from './ItemListContainerShp';
 
 const customStyles = `
   #workbenchPageContent {
@@ -46,10 +47,12 @@ export default class ListsTest extends React.Component<IListsTestProps, IListsTe
             <div className={styles.column}> */}
              
               {/* <ItemListContainer context={this.props.context} /> */}
-              <ItemListContainer context={this.props.context} SPService={this.props.SPService}/>
+              <ItemListContainer context={this.props.context} />
+
+              <ItemListContainerShp context={this.props.context} SPService={this.props.SPService}/>
 
 
-              <Button className={buttonClassName} onClick={this.handleSizeToggle} />
+              <Button className={buttonClassName} onClick={this.handleSizeToggle} text='Klik' />
 
               
             </div>

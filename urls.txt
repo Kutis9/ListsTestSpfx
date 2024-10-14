@@ -1,0 +1,9 @@
+"initialPage": "http://kutis.sharepoint.com/sites/Dev/_layouts/15/workbench.aspx",
+
+IAM_API_KEY = dffe9a0b3ed64e928a02ce8738bd743b42f9b7af315941eaab004b60601bdad582b217f6f8b04f60b542ff7e5fad3491
+
+
+
+http://shptest06/kutis/_layouts/15/workbench.aspx
+
+https://shptest06.mil.sk/kutis/_layouts/15/workbench.aspx

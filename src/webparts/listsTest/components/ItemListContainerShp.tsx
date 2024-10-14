@@ -3,11 +3,12 @@ import { WebPartContext } from '@microsoft/sp-webpart-base';
 import { SPHttpClient } from '@microsoft/sp-http';
 import ItemList from './ItemList';
 import Button from './Button';
-// import SPService from './SPService';
+import SPService from './SPService';
+import ItemListShp from './ItemListShp';
 
 export interface IItemListContainerProps {
   context: WebPartContext;
-  // SPService: SPService;
+  SPService: SPService;
 }
 
 export interface IItemListContainerState {
@@ -15,7 +16,7 @@ export interface IItemListContainerState {
   clicked: boolean;
 }
 
-class ItemListContainer extends React.Component<IItemListContainerProps, IItemListContainerState> {
+class ItemListContainerShp extends React.Component<IItemListContainerProps, IItemListContainerState> {
   constructor(props: IItemListContainerProps) {
     super(props);
 
@@ -26,8 +27,8 @@ class ItemListContainer extends React.Component<IItemListContainerProps, IItemLi
   }
 
   componentDidMount() {
-    this.fetchItems();
-    // this.fetchShpItems();
+    // this.fetchItems();
+    this.fetchShpItems();
   }
 
 
@@ -40,9 +41,10 @@ class ItemListContainer extends React.Component<IItemListContainerProps, IItemLi
 
     return (
       <div style={containerStyle}>
-        <h1>Zoznamy mojej ShP lokality</h1>
-        <ItemList items={this.state.items} /> 
+        <h1>Items zo zoznamu {this.listName} </h1>
+        <ItemListShp items={this.state.items} /> 
         {/* items={this.state.items} predavame do komponenty ItemList ako props */}
+        {/* <ItemList items={this.state.items} />  */}
 
         <Button onClick={this.handleClick} text='Zmena farby' />
       </div>
@@ -53,24 +55,24 @@ class ItemListContainer extends React.Component<IItemListContainerProps, IItemLi
 
 
 
-  fetchItems() {
-    const { context } = this.props;
+  // fetchItems() {
+  //   const { context } = this.props;
 
-    context.spHttpClient.get(`${context.pageContext.web.absoluteUrl}/_api/web/lists`, SPHttpClient.configurations.v1)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ items: data.value });
-      });
-  }
-
-  
-  // fetchShpItems = () => {
-  //   this.props.SPService.getItems('DovolenkyConfig').then((response) => {
-  //     response.json().then((data) => {
+  //   context.spHttpClient.get(`${context.pageContext.web.absoluteUrl}/_api/web/lists`, SPHttpClient.configurations.v1)
+  //     .then(response => response.json())
+  //     .then(data => {
   //       this.setState({ items: data.value });
   //     });
-  //   });
   // }
+  listName = 'TestLists';
+  
+  fetchShpItems = () => {
+    this.props.SPService.getItems(this.listName).then((response) => {
+      response.json().then((data) => {
+        this.setState({ items: data.value });
+      });
+    });
+  }
 
   handleClick = () => {
     console.log('Clicked: ', this.state.clicked);
@@ -84,4 +86,4 @@ class ItemListContainer extends React.Component<IItemListContainerProps, IItemLi
   }
 }
 
-export default ItemListContainer;
+export default ItemListContainerShp;

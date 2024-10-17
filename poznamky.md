@@ -48,3 +48,4 @@ Centralizácia logiky vedie k menšiemu množstvu chýb a zjednodušuje debuggin
 - Čistota kódu (Clean Code):
 Komponenty sú čistejšie a jednoduchšie, keď sa sústreďujú na UI a delegujú logiku službám.
 Tento prístup zlepšuje čitateľnosť a zrozumiteľnosť kódu, čo je dôležité pre tímovú prácu a dlhodobú udržateľnosť projektu.
+// zmena

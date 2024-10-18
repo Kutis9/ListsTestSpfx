@@ -214,7 +214,7 @@ export default class ShpApiPAGE extends React.Component<IShpApiPAGEProps, IShpAp
                 <input type="text" value={this.state.updateMeno} onChange={this.handleUpdateMenoChange} placeholder="Zadajte meno pre aktualizáciu" />
                 <input type="text" value={this.state.updatePriezvisko} onChange={this.handleUpdatePriezviskoChange} placeholder="Zadajte priezvisko pre aktualizáciu" />
                 <button onClick={this.handleUpdateClick}>Aktualizovať</button>
-
+{/*  */}
 
 
             </div>
